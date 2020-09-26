@@ -2,8 +2,18 @@ header {
     color: purple;
 }
 
+header h2 {
+    display: inline;
+}
+
+.second div button {
+    color: white;
+    background-color: purple;
+}
 .end div button{
     color: white;
     background-color: purple;
+    border-radius: 25px;
 
 }
+

@@ -1,5 +1,5 @@
 //TIMER ELEMENT
-var timerEl = document.querySelector("timer");
+var timerEl = document.querySelector("#timer");
 
 //BUTTONS FOR FUNCTIONALITY
 var btnStart = document.querySelector("#start");
@@ -13,13 +13,20 @@ var btnChoice2 = document.querySelector("#second");
 var btnChoice3 = document.querySelector("#third");
 var btnChoice4 = document.querySelector("fourth");
 
+//SHOWING ANSWER
+var showReport = document.querySelector("#answer");
+
 //INPUT NAME FOR HIGH SCORE
 var nameInput = document.querySelector("#name");
 
 //PAGE ELEMENTS FOR DISPLAYS
-var challenge = document.querySelector("#challenge");
+var secondPageEl = document.querySelector("#question-page");
 var highScorePageEl = document.querySelector("#high-score-page");
 var firstPage = document.querySelector("#start-page");
+var lastPage = document.querySelector("#last-page");
+
+
+
 
 //QUESTIONS CREATED FOR CODE BANK
 var qBank = 
@@ -63,21 +70,22 @@ var qBank =
      var questionCount = 10;
 
     while (timer > 0 && questionCount < qBank.length){
-        var currentChoices = [qBank[questionCount].correctAnswer, ...qBank[questionCount].incorrectAnswer]
+        var currentChoices = [qBank[questionCount].correctAnswer, ...qBank[questionCount].incorrectAnswer];
 
             for( var i = 0; i < currentChoices.length; i ++){
-                btnChoice1.textContent = currentChoices[i];
-                btnChoice2.textContent= currentChoices[i];
-                btnChoice3.textContent = currentChoices[i];
-                btnChoice4.textContent = currentChoices [i];
+                //btnChoice1.textContent = currentChoices[i];
+               //ask tutor if ok that i used as a guide GET BUTTONS
+
+               var qButtons = document.createElement("button");
+               qButtons.setAttribute("")
 
                 if(currentChoices.correctAnswer === true){
                     //next question
-                    //display correct
+                    showReport.textContent = "Correct";
                 }
                 if(currentChoices.incorrectAnswer === true){
                     //set timer back 10 seconds
-                    //display incorrect
+                    showReport.textContent = "Incorrect";
                 }
             }
 
@@ -98,6 +106,8 @@ var startGame = function(event)
     //hides elements not relevant to the page
     highScorePageEl.style.display = "none";
     firstPage.style.display = "none";
+    lastPage.style.display = "none";
+
 
 
     //call game function
@@ -112,11 +122,14 @@ var clearName = function(event){
 
 //local storage
 var submitName = function (event){
-    
+    highScorePageEl.style.display = "none";
+    firstPage.style.display = "none";
+    secondPageEl.style.display = "none";
+
     event.preventDefault();
     
-   // var name = document.querySelector('#name').value;
-    //localStorage.setItem('name', name)
+    var name = document.querySelector('#name').value;
+    localStorage.setItem('name', name)
 }
 
 var goBack = function (event){
